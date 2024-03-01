@@ -15,13 +15,14 @@ import Button from "@mui/material/Button";
 import { auth } from "@/utils/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-import { useAddUser } from "@/utils/hooks/useUser";
+import { useAddUser, useAddWorker } from "@/utils/hooks/useUser";
 import { useCustomToast } from "@/components/helpers/functions";
 import { useGetLocations } from "@/utils/hooks/useLocation";
-const Login = () => {
+import toast from "react-hot-toast";
+const Create = () => {
   const { customToast, loading } = useCustomToast();
   const { colors } = useGlobalTheme();
-  const { mutateAsync } = useAddUser();
+  const { mutateAsync } = useAddWorker();
   const { data: locations } = useGetLocations();
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,6 +31,8 @@ const Login = () => {
     const password = data.get("password")?.toString().trim();
     const name = data.get("name")?.toString().trim();
     const location = data.get("location")?.toString();
+    if (!name || !location)
+      return toast.error("Name and Location are required");
 
     if (!email || !password) return;
     const signIn = async () => {
@@ -43,7 +46,7 @@ const Login = () => {
               uid,
               admin: false,
               photoURL: "",
-              location: location!,
+              location,
             });
           } else {
             throw new Error("Could not sign in");
@@ -93,7 +96,7 @@ const Login = () => {
             <FormLabel>Name</FormLabel>
             <TextField name="name" required label="Name" />
           </FormControl>
-          <Select value={location} label="Location" required fullWidth>
+          <Select label="Location" required fullWidth name="location">
             {locations?.map((loc) => (
               <MenuItem key={loc._id} value={loc._id}>
                 {loc.name}
@@ -130,4 +133,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Create;

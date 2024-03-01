@@ -61,16 +61,7 @@ const Rightbar = () => {
 
       <div className="flex-col-center px-2">
         <Box className="w-full flex-col-center mt-2 gap-1">
-          <Typography variant="h6">Available Spots</Typography>
-          <Box
-            py={2}
-            px={1}
-            className={`flex-col-start w-full `}
-            sx={{
-              borderRadius: 1,
-            }}
-            bgcolor={colors.secondary}
-          ></Box>
+          <Typography variant="h6">{user.email}</Typography>
         </Box>
       </div>
     </Drawer>

@@ -1,9 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { User, UserFetched, IWorkerFetched } from "@/types";
+import { User, UserFetched, IWorkerFetched, Worker } from "@/types";
 export const useAddUser = () => {
   return useMutation({
     mutationFn: (user: User): Promise<void> => axios.post("/api/user", user),
+  });
+};
+export const useAddWorker = () => {
+  return useMutation({
+    mutationFn: (user: Worker): Promise<void> => axios.post("/api/user", user),
   });
 };
 export const useUpdateUser = () => {

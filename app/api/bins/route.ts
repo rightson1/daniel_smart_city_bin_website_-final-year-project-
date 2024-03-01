@@ -3,6 +3,7 @@ import db from "@/utils/db";
 import Bin from "@/utils/models/Bin";
 import { IBinFetched } from "@/types";
 import Location from "@/utils/models/Location";
+export const dynamic = "force-dynamic";
 export async function POST(request: NextRequest) {
   await db();
   try {

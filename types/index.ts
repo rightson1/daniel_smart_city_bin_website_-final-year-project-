@@ -56,8 +56,10 @@ export interface UserBase {
 }
 
 export interface User extends UserBase {}
-export interface Worker extends UserBase {}
-export interface IWorkerFetched extends Worker, Fetched {
+export interface Worker extends UserBase {
+  location: string;
+}
+export interface IWorkerFetched extends UserBase, Fetched {
   location: ILocationFetched;
 }
 export interface UserFetched extends User, Fetched {}

@@ -31,7 +31,6 @@ const Login = () => {
               uid,
               admin: true,
               photoURL: "",
-              location: "",
             });
           } else {
             throw new Error("Could not sign in");

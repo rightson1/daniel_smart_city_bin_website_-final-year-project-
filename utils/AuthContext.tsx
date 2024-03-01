@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 import { auth } from "./firebase";
 import axios from "axios";
 import { useState } from "react";
-import { Admin, User, UserFetched } from "@/types";
+import { Admin, IWorkerFetched, User, UserFetched } from "@/types";
 import { useRouter } from "next/navigation";
 
 const AuthContext = createContext({});
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setAdmin({
           uid: user.uid,
           email: user.email,
-          displayNavme: user.displayName,
+          displayName: user.displayName,
           photoURL: user.photoURL,
         });
         if (localUser?.uid === user.uid) {
@@ -91,7 +91,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 interface AuthContextProps {
-  user: UserFetched;
+  user: IWorkerFetched;
   admin: Admin;
   fetchUser: (uid: string) => Promise<void>;
   logout: () => Promise<void>;

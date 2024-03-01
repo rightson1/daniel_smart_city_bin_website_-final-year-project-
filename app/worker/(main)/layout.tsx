@@ -17,13 +17,16 @@ const Layout = ({ children }: childrenProps) => {
   const { admin, user } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
-
+  console.log(admin);
   useEffect(() => {
     if (!admin) {
       localStorage.setItem("path", pathname);
       router.push("/login");
     }
   }, [admin, user]);
+  if (!user) {
+    return <div>loading...</div>;
+  }
   return (
     <Box>
       <UserSide {...{ open, setOpen }} />

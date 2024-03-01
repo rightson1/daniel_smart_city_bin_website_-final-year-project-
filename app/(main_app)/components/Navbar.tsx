@@ -26,6 +26,7 @@ import Apps from "./Apps";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { useAuth } from "@/utils/AuthContext";
 import { IOpen } from "@/types";
+import { useGetBins } from "@/utils/hooks/useBin";
 // import { useNotifications } from "@/components/helpers/functions";
 
 export default function Navbar({ open, setOpen }: IOpen) {
@@ -33,6 +34,7 @@ export default function Navbar({ open, setOpen }: IOpen) {
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   // const { notifications } = useNotifications();
+  const { data: bins } = useGetBins();
   const { logout } = useAuth();
   const openPopOver = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
@@ -118,7 +120,10 @@ export default function Navbar({ open, setOpen }: IOpen) {
           aria-label="show 17 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={10} color="error">
+          <Badge
+            badgeContent={bins?.filter((bin) => bin.level === 100).length}
+            color="error"
+          >
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -198,7 +203,10 @@ export default function Navbar({ open, setOpen }: IOpen) {
               aria-label="show 17 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={10} color="error">
+              <Badge
+                badgeContent={bins?.filter((bin) => bin.level === 100).length}
+                color="error"
+              >
                 <NotificationsIcon />
               </Badge>
             </IconButton>

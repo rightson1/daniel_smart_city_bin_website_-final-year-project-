@@ -9,16 +9,11 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { menuType, IOpen } from "@/types";
 import { Button, Chip, useMediaQuery } from "@mui/material";
-import PeopleIcon from "@mui/icons-material/People";
-import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
-import MyLocationIcon from "@mui/icons-material/MyLocation";
-import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
-import CelebrationIcon from "@mui/icons-material/Celebration";
+import RecyclingIcon from "@mui/icons-material/Recycling";
 import HomeIcon from "@mui/icons-material/Home";
 import { useGlobalTheme } from "@/utils/themeContext";
 import { useRouter } from "next/navigation";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import QrCodeIcon from "@mui/icons-material/QrCode";
+
 const drawerWidth = "220px";
 
 export default function UserSide({ open, setOpen }: IOpen) {
@@ -38,31 +33,6 @@ export default function UserSide({ open, setOpen }: IOpen) {
           name: "Home",
           icon: <HomeIcon />,
           link: "/",
-        },
-        {
-          name: "Gamming Spots",
-          icon: <MyLocationIcon />,
-          link: "/spots",
-        },
-        {
-          name: "Games",
-          icon: <SportsEsportsIcon />,
-          link: "/games",
-        },
-        {
-          name: "Consoles",
-          icon: <VideogameAssetIcon />,
-          link: "/consoles",
-        },
-        {
-          name: "Session Code",
-          icon: <QrCodeIcon />,
-          link: "/session-code",
-        },
-        {
-          name: "Notifications",
-          icon: <NotificationsIcon />,
-          link: "/notification",
         },
       ],
     },
@@ -111,7 +81,7 @@ export default function UserSide({ open, setOpen }: IOpen) {
           <List disablePadding>
             {item.links.map((text, index) => (
               <Box
-                onClick={() => router.push(`/user/${text.link}`)}
+                onClick={() => router.push(`${text.link}`)}
                 // className="w-full fb px-4 py-1 cursor-pointer transition-all duration-300 ease-in-out"
                 sx={{
                   "&:hover": {

@@ -106,36 +106,16 @@ const links = [
     link: "/",
   },
   {
-    name: "Gamming Spots",
+    name: "Locations",
     link: "/locations",
   },
   {
-    name: "Games",
-    link: "/games",
+    name: "Bins",
+    link: "/bins",
   },
   {
-    name: "Consoles",
-    link: "/consoles",
-  },
-  {
-    name: "Notifications",
-    link: "/notifications",
-  },
-  {
-    name: "New Console",
-    link: "/create/console",
-  },
-  {
-    name: "New Console Type",
-    link: "/create/console-type",
-  },
-  {
-    name: "New Game",
-    link: "/create/game",
-  },
-  {
-    name: "New Gamming Spot",
-    link: "/create/spot",
+    name: "Workers",
+    link: "/workers",
   },
 ];
 const style = {

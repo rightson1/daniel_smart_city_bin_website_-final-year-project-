@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import SpeedDial from "@mui/material/SpeedDial";
@@ -12,21 +13,20 @@ const actions = [
   {
     name: "New Bin",
     icon: <DirtyLensRoundedIcon />,
-    link: "/bin",
+    link: "/create/bin",
   },
+
   {
-    name: "New Worker",
-    icon: <EngineeringRoundedIcon />,
-    link: "/new-worker",
-  },
-  {
-    name: "New Location",
+    name: "New Locations",
     icon: <RoomIcon />,
-    link: "/location",
+    link: "/create/location",
   },
 ];
+
 export default function CustomSpeedDial() {
   const router = useRouter();
+  //if window is not defined return null
+
   return (
     <SpeedDial
       ariaLabel="SpeedDial basic example"
@@ -40,7 +40,9 @@ export default function CustomSpeedDial() {
         <SpeedDialAction
           key={action.name}
           icon={action.icon}
-          onClick={() => router.push(`/create/${action.link}`)}
+          onClick={() => {
+            router.push(`${action.link}`);
+          }}
           tooltipTitle={action.name}
         />
       ))}

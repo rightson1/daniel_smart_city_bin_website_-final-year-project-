@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import db from "@/utils/db";
 import User from "@/utils/models/User";
 import { UserFetched } from "@/types";
+import Location from "@/utils/models/Location";
+export const dynamic = "force-dynamic";
 export async function POST(request: NextRequest) {
   await db();
   const body = await request.json();
@@ -44,7 +46,9 @@ export async function GET(request: NextRequest) {
   try {
     await db();
     const id = request.nextUrl.searchParams.get("uid") as string;
-    const user = await User.findOne({ uid: id });
+    Location;
+    const user = await User.findOne({ uid: id }).populate("location");
+
     return NextResponse.json(user);
   } catch (err) {
     console.log(err);

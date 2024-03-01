@@ -12,13 +12,14 @@ import { GridColDef } from "@mui/x-data-grid";
 import { useAuth } from "@/utils/AuthContext";
 import { binsPieChart, workers } from "@/constants";
 import { CustomGrid } from "@/components/data/CustomGrid";
-import { worker_columns } from "./workers/page";
+
 import MyLocationRoundedIcon from "@mui/icons-material/MyLocationRounded";
 import EngineeringRoundedIcon from "@mui/icons-material/EngineeringRounded";
 import DirtyLensRoundedIcon from "@mui/icons-material/DirtyLensRounded";
 import { useGetLocations } from "@/utils/hooks/useLocation";
 import { useGetBins } from "@/utils/hooks/useBin";
 import { useGetWorkers } from "@/utils/hooks/useUser";
+import { worker_columns } from "@/components/workers/worker_columns";
 
 const Home = () => {
   const { user } = useAuth();
@@ -48,7 +49,7 @@ const Home = () => {
       })`,
     }));
   }, [bins]);
-  console.log(binsPieChart, "binsPieChart");
+
   const columns: GridColDef[] = [
     { field: "name", headerName: "Name", width: 150 },
     {

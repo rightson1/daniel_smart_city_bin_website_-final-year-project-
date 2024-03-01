@@ -3,7 +3,7 @@ import db from "@/utils/db";
 import User from "@/utils/models/User";
 import { UserFetched } from "@/types";
 import Location from "@/utils/models/Location";
-
+export const dynamic = "force-dynamic";
 export async function GET(request: NextRequest) {
   try {
     await db();

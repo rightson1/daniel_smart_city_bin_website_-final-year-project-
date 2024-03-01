@@ -10,6 +10,7 @@ import { IBinFetched, IGoogleLocation } from "@/types";
 import { useCustomToast } from "@/components/helpers/functions";
 import LocationSearchingIcon from "@mui/icons-material/LocationSearching";
 import { View_Google_Map } from "@/components/bins/view-google-map";
+import { bins_columns } from "@/components/bins/bins_columns";
 
 const Bins = () => {
   const { data: bins } = useGetBins();
@@ -23,51 +24,10 @@ const Bins = () => {
     });
   };
 
-  const columns: GridColDef[] = [
-    { field: "name", headerName: "Name", width: 150 },
-    {
-      field: "location",
-      headerName: "Location",
-      width: 150,
-      renderCell: (params) => {
-        return <div>{params.row.location.name}</div>;
-      },
-    },
-    {
-      field: "googleLocation",
-      headerName: "Map",
-      width: 150,
-      renderCell: (params) => {
-        return (
-          <View_Google_Map
-            {...(params.row.googleLocation as IGoogleLocation)}
-          />
-        );
-      },
-    },
-
-    {
-      field: "actions",
-      headerName: "Actions",
-      width: 150,
-      sortable: false,
-      renderCell: (params) => (
-        <div>
-          <Bin_Edit bin={params.row as IBinFetched} />
-          <Button
-            size="small"
-            onClick={() => handleDelete(params.row._id as string)}
-          >
-            <DeleteIcon />
-          </Button>
-        </div>
-      ),
-    },
-  ];
   return (
     <div className="pxs fxc gap-5 py-5">
       <Typography variant="h4">Bins</Typography>
-      <CustomGrid columns={columns} rows={bins} />
+      <CustomGrid columns={bins_columns(handleDelete)} rows={bins} />
     </div>
   );
 };

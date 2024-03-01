@@ -13,15 +13,41 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
-import React from "react";
+import React, { useMemo } from "react";
 import { notifications } from "@/constants";
+import { useGetBins } from "@/utils/hooks/useBin";
 
 const Rightbar = () => {
   const theme = useTheme();
   const { colors } = useGlobalTheme();
   const screenWidth = useMediaQuery(theme.breakpoints.up("md"));
-
+  const { data: bins } = useGetBins();
   const drawerWidth = "240px";
+
+  // {
+  //     id: 1,
+  //     title: "Bin Damaged",
+  //     message: `
+  //     The bin at ${locations[0].name} has been damaged and needs repair.`,
+  //     createdAt: new Date(),
+  //     sender: "Rightson Tole",
+  //   },
+  //notifications for all bins whose level is above 80%
+
+  const notifications = useMemo(() => {
+    if (bins) {
+      return bins
+        .filter((bin) => bin.level > 80)
+        .map((bin) => ({
+          id: bin._id,
+          title: "Bin Full",
+          message: `The bin at ${bin.location.name} is full and needs emptying.`,
+          createdAt: new Date(),
+          sender: "Rightson Tole",
+        }));
+    }
+    return [];
+  }, [bins]);
   return (
     <Drawer
       variant={screenWidth ? "persistent" : "temporary"}
@@ -48,7 +74,10 @@ const Rightbar = () => {
             aria-label="show 17 new notifications"
             color="inherit"
           >
-            <Badge badgeContent={10} color="error">
+            <Badge
+              badgeContent={bins?.filter((bin) => bin.level === 100).length}
+              color="error"
+            >
               <NotificationsIcon />
             </Badge>
           </IconButton>

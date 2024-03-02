@@ -110,7 +110,7 @@ const Rightbar = () => {
                     className="text-[10px]"
                   ></Typography>
                   <Typography variant="body2" className="text-[10px]">
-                    Tole Rightson
+                    Daniel
                   </Typography>
                 </div>
               </Box>
